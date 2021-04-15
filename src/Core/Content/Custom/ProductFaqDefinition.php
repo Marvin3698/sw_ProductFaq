@@ -18,6 +18,7 @@ class ProductFaqDefinition extends EntityDefinition
         return self::ENTITY_NAME;
     }
 
+
     public function getCollectionClass(): string
     {
         return ProductFaqCollection::class;
@@ -31,11 +32,10 @@ class ProductFaqDefinition extends EntityDefinition
     protected function defineFields(): FieldCollection
     {
         return new FieldCollection([
-            (new IdField('id', 'id'))->addFlags(new PrimaryKey(), new Required()),
-            (new IdField('product_id', 'product_id')),
+            (new IdField('id', 'id'))->addFlags(new Required(), new PrimaryKey()),
+            (new StringField('product_id', 'product_id')),
             (new StringField('question', 'question')),
-            new StringField('answer', 'answer'),
-
+            (new StringField('answer', 'answer'))
         ]);
     }
 }

@@ -13,7 +13,7 @@ use Shopware\Core\Framework\DataAbstractionLayer\EntityCollection;
  * @method ProductFaqEntity|null first()
  * @method ProductFaqEntity|null last()
  */
-class productBadgeCollection extends EntityCollection
+class ProductFaqCollection extends EntityCollection
 {
     protected function getExpectedClass(): string
     {

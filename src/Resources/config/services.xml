@@ -3,9 +3,16 @@
            xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
            xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
+
     <services>
         <service id="ProductFaq\Core\Content\Custom\ProductFaqDefinition">
             <tag name="shopware.entity.definition" entity="product_faq" />
+        </service>
+
+        <service id="ProductFaq\Subscriber\GetFaq">
+            <argument type="service" id="Shopware\Core\System\SystemConfig\SystemConfigService" />
+            <argument type="service" id="product_faq.repository"/>
+            <tag name="kernel.event_subscriber"/>
         </service>
     </services>
 </container>

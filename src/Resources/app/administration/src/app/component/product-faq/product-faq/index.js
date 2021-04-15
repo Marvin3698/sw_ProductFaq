@@ -32,11 +32,10 @@ Shopware.Component.register('product-faq', {
         this.product_id=url.slice(42,74);
         const id = 'B7AD92202335401F8F33910C9228AC69 ';
 
-        productFaqRepo
-            .get(id, Shopware.Context.api)
-            .then(entity => {
-                this.entity = entity;
-                console.log(this.entity);
+            productFaqRepo
+            .search(new Criteria(),Shopware.Context.api)
+            .then((result) => {
+                this.result = result;
             });
 
     },methods: {

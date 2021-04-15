@@ -1,0 +1,86 @@
+{% sw_extends '@Storefront/storefront/page/product-detail/tabs.html.twig' %}
+    {% set settings= context.context.extensions %}
+
+{% block page_product_detail_tabs_inner %}
+    {{ dump(page.product.id) }}
+    {{ dump(settings) }}
+    {% if settings is not null %}
+    <div class="card card-tabs">
+        <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+        <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+        <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+        <script>
+            $( function() {
+                $( "#accordion" ).accordion({
+                    collapsible: true
+                });
+            } );
+        </script>
+
+        {% block page_product_detail_tabs_navigation %}
+            <div class="card-header product-detail-tab-navigation">
+                {% block page_product_detail_tabs_navigation_container %}
+                    <ul class="nav nav-tabs product-detail-tab-navigation-list"
+                        id="product-detail-tabs"
+                        role="tablist">
+
+                        {% block page_product_detail_tabs_navigation_review %}
+                            {% if config('core.listing.showReview') %}
+                                <li class="nav-item">
+                                    <a class="nav-link {% if (ratingSuccess == 1) or (ratingSuccess == -1) %}active{% endif %} product-detail-tab-navigation-link"
+                                       id="review-tab"
+                                       data-toggle="tab"
+                                       data-offcanvas-tabs="true"
+                                       href="#review-tab-pane"
+                                       role="tab"
+                                       aria-controls="review-tab-pane"
+                                       aria-selected="true">
+                                        <span>FAQ</span>
+                                        <span class="product-detail-tab-navigation-icon">
+                                            {% sw_icon 'arrow-medium-right' style {'pack':'solid'} %}
+                                        </span>
+                                    </a>
+                                </li>
+                            {% endif %}
+                        {% endblock %}
+                    </ul>
+                {% endblock %}
+            </div>
+        {% endblock %}
+
+        {% block page_product_detail_tabs_content %}
+            <div class="product-detail-tabs-content card-body">
+                {% block page_product_detail_tabs_content_container %}
+                    <div class="tab-content">
+
+                        {% block page_product_detail_tabs_content_review %}
+                            {% if config('core.listing.showReview') %}
+                                <div class="tab-pane fade show {% if (ratingSuccess == 1) or (ratingSuccess == -1) %}active{% endif %}"
+                                     id="review-tab-pane"
+                                     role="tabpanel"
+                                     aria-labelledby="review-tab">
+                                    <div id="accordion">
+
+                                        {% for key,set in settings %}
+                                            {{ dump(set) }}
+                                            {% if page.product.id==set.product_id %}
+
+                                            <h3>{{ set.question }}</h3>
+                                        <div>
+                                            <p>{{ set.answer }}</p>
+                                        </div>
+                                            {% endif %}
+
+                                        {% endfor %}
+
+                                    </div>
+                                </div>
+                            {% endif %}
+                        {% endblock %}
+                    </div>
+                {% endblock %}
+            </div>
+        {% endblock %}
+    </div>
+    {% endif %}
+{% endblock %}
