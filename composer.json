@@ -1,0 +1,18 @@
+{
+  "name": "ma/productfaq",
+  "description": "adds a faq to products",
+  "type": "shopware-platform-plugin",
+  "license": "MIT",
+  "autoload": {
+    "psr-4": {
+      "ProductFaq\\": "src/"
+    }
+  },
+  "extra": {
+    "shopware-plugin-class": "ProductFaq\\ProductFaq",
+    "label": {
+      "de-DE": "Produkt-FAQ",
+      "en-GB": "product FAQ"
+    }
+  }
+}

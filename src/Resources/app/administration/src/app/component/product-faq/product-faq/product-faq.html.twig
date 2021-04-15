@@ -1,0 +1,56 @@
+{% block example_block %}
+    <div class="question-field">
+
+        <sw-card title="FAQ"  id="faq_card">
+            <sw-container columns="1fr 1fr">
+                <sw-card-section divider="right">
+                    <span id="product_faq_info"></span>
+
+                    <label>
+                      Question:
+                   </label>
+                    <sw-text-field :copyable="false" :copyableTooltip="false" v-model="question">
+                    </sw-text-field>
+                    <label>
+                        Answer:
+                    </label>
+                    <sw-text-field :copyable="false" :copyableTooltip="false" v-model="answer">
+                    </sw-text-field>
+                    <sw-button :disabled="false" :square="false" :block="false" :isLoading="false" id="btn_faq_add" v-on:click="add()">
+                        add
+                    </sw-button>
+
+
+                </sw-card-section>
+                <sw-card-section>
+                    <sw-grid :items=result style="height:100%;">
+                        <template slot="columns" slot-scope="{ item }">
+
+                            <sw-grid-column flex="minmax(110px, 1fr)" label="question">
+                                <img v-bind:src="item.question" style="max-width: 89px; margin-right:20%">
+                            </sw-grid-column>
+
+
+                            <sw-grid-column flex="minmax(110px, 1fr)" label="answer">
+                                <strong class="strongReplace" style="max-width: 100px;">{{ item.answer }}</strong>
+                            </sw-grid-column>
+
+
+
+                            <sw-grid-column flex="minmax(110px, 1fr)" label="">
+                                <sw-button :disabled="false" :square="false" :block="false" :isLoading="false" id="btnOverViewDelete"  v-on:click="rem(item.id)">
+                                    delete
+                                </sw-button>
+
+                            </sw-grid-column>
+
+
+                        </template>
+                    </sw-grid>
+
+                </sw-card-section>
+            </sw-container>
+        </sw-card>
+
+    </div>
+{% endblock %}
